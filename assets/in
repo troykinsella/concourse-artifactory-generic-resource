@@ -25,6 +25,7 @@ repository=$(require_attr source repository)
 api_key=$(require_attr source api_key)
 version_strategy=$(jq -r '.source.version_strategy // "none"' < "$payload")
 version=$(require_attr version sha256)
+skip_download=$(jq -r '.params.skip_download // false' < "$payload")
 
 cd "$destination"
 echo "$version" > version
@@ -50,11 +51,15 @@ elif [[ $version_strategy == "single-file" ]]; then
   file_url=$(echo "$data" | jq -r '.downloadUri')
   file_name=$(basename $(echo "$data" | jq -r '.path'))
 
-  echo "Downloading ${file_url}..."
-  curl --fail -L \
-    -H "X-JFrog-Art-Api: ${api_key}" \
-    -o "$file_name" \
-    "$file_url"
+  if [ "$skip_download" = "false" ]; then
+    echo "Downloading ${file_url}..."
+    curl --fail -L \
+      -H "X-JFrog-Art-Api: ${api_key}" \
+      -o "$file_name" \
+      "$file_url"
+  else
+    echo "Skipping download"
+  fi
 
   jq -n "{
     version: {

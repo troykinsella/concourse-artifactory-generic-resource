@@ -140,6 +140,50 @@ describe "commands:in" do
       expect(File.read("version")).to eq "d73679c6aa31eea5df0bddaa541d7b849b4ab51f21bedc0ced23ddd9ab124691\n"
     end
 
+
+    it "skips download" do
+      prep_curl_stub(load_fixture('file_info.json'))
+
+      stdin = {
+        "source" => {
+          "version_strategy" => "single-file",
+          "host" => "https://artifactory",
+          "repository" => "generic-local",
+          "api_key" => "foo",
+          "path" => "path/to/file.tar.gz"
+        },
+        "version" => {
+          "sha256" => "d73679c6aa31eea5df0bddaa541d7b849b4ab51f21bedc0ced23ddd9ab124691"
+        },
+        "params" => {
+          "skip_download" => true
+        }
+      }.to_json
+
+      stdout, stderr, status = Open3.capture3("#{in_file} .", :stdin_data => stdin)
+
+      expect(status.success?).to be true
+      out = JSON.parse(File.read(mockelton_out))
+      expect(out["sequence"].size).to be 1
+      expect(out["sequence"][0]["exec-spec"]["args"]).to eq [
+                                                              "curl",
+                                                              "--fail",
+                                                              "-L",
+                                                              "-H", "X-JFrog-Art-Api: foo",
+                                                              "https://artifactory/api/storage/generic-local/path/to/file.tar.gz"
+                                                            ]
+
+      expect(stdout).to eq <<~EOF
+        {
+          "version": {
+            "sha256": "d73679c6aa31eea5df0bddaa541d7b849b4ab51f21bedc0ced23ddd9ab124691"
+          }
+        }
+      EOF
+
+      expect(File.read("version")).to eq "d73679c6aa31eea5df0bddaa541d7b849b4ab51f21bedc0ced23ddd9ab124691\n"
+    end
+
   end
 
 end

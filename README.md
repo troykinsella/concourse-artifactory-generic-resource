@@ -36,6 +36,10 @@ The behaviour depends on the configured `version_strategy`:
   As Artifactory does not support a "file change history" API, only the latest file publication can be understood by this configuration,
   which means that it cannot operate on `every` changed version.
 
+#### Parameters
+
+* `skip_download`: Optional. Default: `false`. Do not download the artifact file when `true`.
+
 ### `out`: Publish artifacts to Artifactory
 
 The behaviour depends on the configured `version_strategy`:
