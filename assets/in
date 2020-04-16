@@ -37,7 +37,7 @@ if [[ $version_strategy == "none" ]]; then
 elif [[ $version_strategy == "single-file" ]]; then
   file_path=$(require_attr source path)
 
-  data=$(curl --fail -L \
+  data=$(curl -fSsL \
     -H "X-JFrog-Art-Api: ${api_key}" \
     "${host}/api/storage/${repository}/${file_path}"
   )
@@ -53,7 +53,7 @@ elif [[ $version_strategy == "single-file" ]]; then
 
   if [ "$skip_download" = "false" ]; then
     echo "Downloading ${file_url}..."
-    curl --fail -L \
+    curl -fL \
       -H "X-JFrog-Art-Api: ${api_key}" \
       -o "$file_name" \
       "$file_url"

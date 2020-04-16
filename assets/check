@@ -26,7 +26,7 @@ version=$(jq -r '.version.sha256 // ""' < "$payload")
 if [[ $version_strategy == "single-file" ]]; then
   file_path=$(require_attr source path)
 
-  data=$(curl --fail -L \
+  data=$(curl -fSsL \
     -H "X-JFrog-Art-Api: ${api_key}" \
     "${host}/api/storage/${repository}/${file_path}"
   )

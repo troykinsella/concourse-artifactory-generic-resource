@@ -87,8 +87,7 @@ describe "commands:check" do
         expect(out["sequence"].size).to be 1
         expect(out["sequence"][0]["exec-spec"]["args"]).to eq [
                                                                 "curl",
-                                                                "--fail",
-                                                                "-L",
+                                                                "-fSsL",
                                                                 "-H", "X-JFrog-Art-Api: foo",
                                                                 "https://artifactory/api/storage/generic-local/path/to/file.tar.gz"
                                                               ]
@@ -130,8 +129,7 @@ describe "commands:check" do
         expect(out["sequence"].size).to be 1
         expect(out["sequence"][0]["exec-spec"]["args"]).to eq [
                                                                 "curl",
-                                                                "--fail",
-                                                                "-L",
+                                                                "-fSsL",
                                                                 "-H", "X-JFrog-Art-Api: foo",
                                                                 "https://artifactory/api/storage/generic-local/path/to/file.tar.gz"
                                                               ]
@@ -164,8 +162,7 @@ describe "commands:check" do
         expect(out["sequence"].size).to be 1
         expect(out["sequence"][0]["exec-spec"]["args"]).to eq [
                                                                 "curl",
-                                                                "--fail",
-                                                                "-L",
+                                                                "-fSsL",
                                                                 "-H", "X-JFrog-Art-Api: foo",
                                                                 "https://artifactory/api/storage/generic-local/path/to/file.tar.gz"
                                                               ]

@@ -115,15 +115,13 @@ describe "commands:in" do
       expect(out["sequence"].size).to be 2
       expect(out["sequence"][0]["exec-spec"]["args"]).to eq [
                                                               "curl",
-                                                              "--fail",
-                                                              "-L",
+                                                              "-fSsL",
                                                               "-H", "X-JFrog-Art-Api: foo",
                                                               "https://artifactory/api/storage/generic-local/path/to/file.tar.gz"
                                                             ]
       expect(out["sequence"][1]["exec-spec"]["args"]).to eq [
                                                               "curl",
-                                                              "--fail",
-                                                              "-L",
+                                                              "-fL",
                                                               "-H", "X-JFrog-Art-Api: foo",
                                                               "-o", "file.tar.gz",
                                                               "https://artifactory/generic-local/path/to/file.tar.gz"
@@ -167,8 +165,7 @@ describe "commands:in" do
       expect(out["sequence"].size).to be 1
       expect(out["sequence"][0]["exec-spec"]["args"]).to eq [
                                                               "curl",
-                                                              "--fail",
-                                                              "-L",
+                                                              "-fSsL",
                                                               "-H", "X-JFrog-Art-Api: foo",
                                                               "https://artifactory/api/storage/generic-local/path/to/file.tar.gz"
                                                             ]
