@@ -20,7 +20,7 @@ PATH=/usr/local/bin:$PATH
 payload=/tmp/artifactory-resource-request
 cat > "$payload" <&0
 
-host=$(require_attr source host)
+base_url=$(require_attr source url)
 repository=$(require_attr source repository)
 api_key=$(require_attr source api_key)
 version_strategy=$(jq -r '.source.version_strategy // "none"' < "$payload")
@@ -39,7 +39,7 @@ elif [[ $version_strategy == "single-file" ]]; then
 
   data=$(curl -fSsL \
     -H "X-JFrog-Art-Api: ${api_key}" \
-    "${host}/api/storage/${repository}/${file_path}"
+    "${base_url}/api/storage/${repository}/${file_path}"
   )
 
   checksum_sha256=$(echo "$data" | jq -r '.checksums.sha256')

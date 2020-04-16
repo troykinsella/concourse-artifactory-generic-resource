@@ -31,7 +31,7 @@ describe "commands:out" do
       stdin = {
         "source" => {
           "version_strategy" => "bogus",
-          "host" => "https://artifactory",
+          "url" => "https://artifactory",
           "repository" => "generic-local",
           "api_key" => "foo",
           "path" => "path/to/file.tar.gz"
@@ -52,7 +52,7 @@ describe "commands:out" do
   it "should error upon no glob matches" do
     stdin = {
       "source" => {
-        "host" => "https://artifactory",
+        "url" => "https://artifactory",
         "repository" => "generic-local",
         "api_key" => "foo",
         "path" => "path/to/file.tar.gz"
@@ -75,7 +75,7 @@ describe "commands:out" do
 
       stdin = {
         "source" => {
-          "host" => "https://artifactory",
+          "url" => "https://artifactory",
           "repository" => "generic-local",
           "api_key" => "foo",
           "path" => "path"
@@ -120,7 +120,7 @@ describe "commands:out" do
       stdin = {
         "source" => {
           "version_strategy" => "single-file",
-          "host" => "https://artifactory",
+          "url" => "https://artifactory",
           "repository" => "generic-local",
           "api_key" => "foo",
           "path" => "path/to/file.tar.gz"

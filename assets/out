@@ -16,7 +16,7 @@ fi
 payload=/tmp/artifactory-resource-request
 cat > "$payload" <&0
 
-host=$(require_attr source host)
+base_url=$(require_attr source url)
 repository=$(require_attr source repository)
 file_path=$(require_attr source path)
 api_key=$(require_attr source api_key)
@@ -54,7 +54,7 @@ if [[ $version_strategy == "none" ]]; then
   published=
   glob=$(jq -r '.params.glob // "*"' < "$payload")
   for f in $(ls $glob 2> /dev/null); do
-    publish "$f" "$host/$repository/$file_path/$f"
+    publish "$f" "$base_url/$repository/$file_path/$f"
     published=yep
   done
 
@@ -67,7 +67,7 @@ if [[ $version_strategy == "none" ]]; then
 
 elif [[ $version_strategy == 'single-file' ]]; then
   file_name=$(basename "$file_path")
-  publish "$file_name" "$host/$repository/$file_path"
+  publish "$file_name" "$base_url/$repository/$file_path"
 
   version=$(sha256sum "$file_name" | awk '{print $1}')
   jq -n "{

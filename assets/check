@@ -18,7 +18,7 @@ if [[ $version_strategy == "none" ]]; then
   exit 0
 fi
 
-host=$(require_attr source host)
+base_url=$(require_attr source url)
 repository=$(require_attr source repository)
 api_key=$(require_attr source api_key)
 version=$(jq -r '.version.sha256 // ""' < "$payload")
@@ -28,7 +28,7 @@ if [[ $version_strategy == "single-file" ]]; then
 
   data=$(curl -fSsL \
     -H "X-JFrog-Art-Api: ${api_key}" \
-    "${host}/api/storage/${repository}/${file_path}"
+    "${base_url}/api/storage/${repository}/${file_path}"
   )
 
   checksum_sha256=$(echo "$data" | jq -r '.checksums.sha256')

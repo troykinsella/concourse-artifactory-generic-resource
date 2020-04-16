@@ -25,7 +25,7 @@ describe "commands:check" do
       stdin = {
         "source" => {
           "version_strategy" => "none",
-          "host" => "https://artifactory",
+          "url" => "https://artifactory",
           "repository" => "generic-local",
           "api_key" => "foo",
           "path" => "path/to/file.tar.gz"
@@ -46,7 +46,7 @@ describe "commands:check" do
       stdin = {
         "source" => {
           "version_strategy" => "bogus",
-          "host" => "https://artifactory",
+          "url" => "https://artifactory",
           "repository" => "generic-local",
           "api_key" => "foo",
           "path" => "path/to/file.tar.gz"
@@ -71,7 +71,7 @@ describe "commands:check" do
         stdin = {
           "source" => {
             "version_strategy" => "single-file",
-            "host" => "https://artifactory",
+            "url" => "https://artifactory",
             "repository" => "generic-local",
             "api_key" => "foo",
             "path" => "path/to/file.tar.gz"
@@ -110,7 +110,7 @@ describe "commands:check" do
         stdin = {
           "source" => {
             "version_strategy" => "single-file",
-            "host" => "https://artifactory",
+            "url" => "https://artifactory",
             "repository" => "generic-local",
             "api_key" => "foo",
             "path" => "path/to/file.tar.gz"
@@ -143,7 +143,7 @@ describe "commands:check" do
         stdin = {
           "source" => {
             "version_strategy" => "single-file",
-            "host" => "https://artifactory",
+            "url" => "https://artifactory",
             "repository" => "generic-local",
             "api_key" => "foo",
             "path" => "path/to/file.tar.gz"

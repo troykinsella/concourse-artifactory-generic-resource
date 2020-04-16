@@ -12,7 +12,7 @@ One of the following version strategies can be configured:
 
 ## Source Configuration
 
-* `host`: Required. The URL at which the Artifactory instance can be reached. Example: `https://tools.example.com/artifactory`.
+* `url`: Required. The URL at which the Artifactory instance can be reached. Example: `https://tools.example.com/artifactory`.
 * `repository`: Required. The name of the generic repository in Artifactory. Example: `generic-local`.
 * `api_key`: Required. The API key with which to publish artifacts.
 * `version_strategy`: Optional. The strategy by which to handle versioning. Default: `none`.
@@ -73,7 +73,7 @@ resources:
 - name: artifact
   type: generic-artifact
   source:
-    host: https://tools.example.com/artifactory
+    url: https://tools.example.com/artifactory
     repository: generic-local
     api_key: asdf
     path: project-A
@@ -103,7 +103,7 @@ resources:
   type: generic-artifact
   source:
     version_strategy: single-file
-    host: https://tools.example.com/artifactory
+    url: https://tools.example.com/artifactory
     repository: generic-local
     api_key: asdf
     path: path/to/file.tar.gz
