@@ -31,7 +31,7 @@ The behaviour depends on the configured `version_strategy`:
 ### `in`
 
 The behaviour depends on the configured `version_strategy`:
-* `none`: Unsupported. Will error.
+* `none`: No-op.
 * `single-file`: Fetch the latest artifact file, validating the expected `sha256sum` version produced by `check`.
   As Artifactory does not support a "file change history" API, only the latest file publication can be understood by this configuration,
   which means that it cannot operate on `every` changed version.

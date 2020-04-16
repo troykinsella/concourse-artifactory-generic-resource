@@ -21,7 +21,7 @@ describe "commands:in" do
 
   describe "no version strategy" do
 
-    it "errors" do
+    it "should return an empty version" do
       stdin = {
         "source" => {
           "url" => "https://artifactory",
@@ -35,9 +35,9 @@ describe "commands:in" do
       }.to_json
 
       stdout, stderr, status = Open3.capture3("#{in_file} .", :stdin_data => stdin)
-      expect(status.success?).to be false
+      expect(status.success?).to be true
 
-      expect(stderr).to eq "version strategy does not support get operation\n"
+      expect(stdout).to eq "{\"version\":{}}\n"
     end
 
   end

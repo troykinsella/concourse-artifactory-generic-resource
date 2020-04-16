@@ -24,17 +24,18 @@ base_url=$(require_attr source url)
 repository=$(require_attr source repository)
 api_key=$(require_attr source api_key)
 version_strategy=$(jq -r '.source.version_strategy // "none"' < "$payload")
-version=$(require_attr version sha256)
 skip_download=$(jq -r '.params.skip_download // false' < "$payload")
 
 cd "$destination"
-echo "$version" > version
 
 if [[ $version_strategy == "none" ]]; then
-  echo "version strategy does not support get operation" >&2
-  exit 1
+  # Do nothing
+  echo '{"version":{}}' >&3
 
 elif [[ $version_strategy == "single-file" ]]; then
+  version=$(require_attr version sha256)
+  echo "$version" > version
+
   file_path=$(require_attr source path)
 
   data=$(curl -fSsL \
