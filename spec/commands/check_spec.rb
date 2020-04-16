@@ -96,9 +96,7 @@ describe "commands:check" do
         expect(stdout).to eq <<~EOF
           [
             {
-              "version": {
-                "sha256": "d73679c6aa31eea5df0bddaa541d7b849b4ab51f21bedc0ced23ddd9ab124691"
-              }
+              "sha256": "d73679c6aa31eea5df0bddaa541d7b849b4ab51f21bedc0ced23ddd9ab124691"
             }
           ]
         EOF
@@ -175,9 +173,7 @@ describe "commands:check" do
         expect(stdout).to eq <<~EOF
           [
             {
-              "version": {
-                "sha256": "d73679c6aa31eea5df0bddaa541d7b849b4ab51f21bedc0ced23ddd9ab124691"
-              }
+              "sha256": "d73679c6aa31eea5df0bddaa541d7b849b4ab51f21bedc0ced23ddd9ab124691"
             }
           ]
         EOF

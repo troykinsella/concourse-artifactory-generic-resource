@@ -37,9 +37,7 @@ if [[ $version_strategy == "single-file" ]]; then
     echo '[]' >&3
   else
     jq -n "[{
-      version: {
-        sha256: \"$checksum_sha256\"
-      }
+      sha256: \"$checksum_sha256\"
     }]" >&3
   fi
 
