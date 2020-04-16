@@ -5,6 +5,7 @@ COPY assets/* /opt/resource/
 
 RUN set -eux; \
     apk --update --no-cache add \
+      bash \
       ca-certificates \
       curl \
       jq;
